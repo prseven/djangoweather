@@ -1,9 +1,37 @@
 {% extends 'base.html' %}
 
-{%block content %}
+{% block content %}
 
 
 
-<h1>hello wolrd</h1>
+{% if zipcode %}
+	{{ zipcode }}
+{% endif %}
+	
+	 
+
+
+		
+	{% if api %}
+		{% if api == "Error ...."%}
+			there was  an error...:(
+
+		{% else %}
+
+	<div class="jumbotron">
+	  <h1 class="display-4">Area:{{ api.0.ReportingArea}}<br></h1>
+	  <p class="lead">Category: {{ api.0.Category.Name}}</p>
+	 
+	  <p>Air Quality: {{ api.0.AQI}}</p>
+	  <a class="btn btn-primary btn-lg" href="{% url 'index' %}" role="button">Learn more</a>
+	</div>
+		<br>
+		
+		
+	{% endif %}
+
+{% endif %}
 
 {% endblock %}
+
+
